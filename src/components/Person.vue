@@ -60,7 +60,7 @@ export default {
   setup() {
     console.log("setup"); //1、setup比 beforeCreate更先执行～
     console.log("@@this", this); //2、setup中的this为undefined，vue3中已经弱化this
-    
+
     //3、数据，原来写在data中，此时name age tel都不是响应式的数据
     let name = "张三";
     let age = 18;
@@ -68,7 +68,7 @@ export default {
 
     function changeName() {
       name = "youngs001";
-      console.log(1, name);//4、注意这样修改name，页面是没有变化的
+      console.log(1, name); //4、注意这样修改name，页面是没有变化的
     }
     function changeAge() {
       age += 1;
@@ -78,13 +78,15 @@ export default {
       alert(tel);
       console.log(3, tel);
     }
-    return {
-      name,
-      age,
-      changeName,
-      changeAge,
-      showTel,
-    };
+    // return {
+    //   name,
+    //   age,
+    //   changeName,
+    //   changeAge,
+    //   showTel,
+    // };
+    //setup的返回值也可以是一个渲染函数
+    return () => "哈哈";
   },
 };
 </script>
