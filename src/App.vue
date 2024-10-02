@@ -1,6 +1,7 @@
 <template>
   <div class="app">
-    hello world d
+    <!-- vue3可以不需要跟节点 -->
+    <Person></Person>
     <Person></Person>
   </div>
 </template>
@@ -14,10 +15,4 @@ export default {
 };
 </script>
 <style>
-.app {
-  background: #ddd;
-  box-shadow: #ddd;
-  padding: 20px;
-  color: red;
-}
 </style>
