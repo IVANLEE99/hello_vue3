@@ -1,0 +1,68 @@
+<!-- Person -->
+<template>
+  <div class="person">
+    <h2>姓名：{{ name }}</h2>
+    <h2>年龄：{{ age }}</h2>
+    <button @click="changeName">修改姓名</button>
+    <button @click="changeAge">修改年龄</button>
+    <button @click="showTel">查看联系方式</button>
+  </div>
+</template>
+<script lang="ts">
+export default {
+  name: "Person",
+  //import引入的组件需要注入到对象中才能使用
+  components: {},
+  //prop属性
+  props: {
+    props: {
+      type: String,
+      default: "",
+    },
+  },
+  data() {
+    //这里存放数据
+    return {
+      name: "youngs",
+      age: 18,
+      tel: "13333333",
+    };
+  },
+  //监听属性 类似于data概念
+  computed: {},
+  //监控data中的数据变化
+  watch: {},
+  //生命周期 - 创建完成（可以访问当前this实例）
+  created() {},
+  //生命周期 - 挂载完成（可以访问DOM元素）
+  mounted() {},
+  beforeCreate() {}, //生命周期 - 创建之前
+  beforeMount() {}, //生命周期 - 挂载之前
+  beforeUpdate() {}, //生命周期 - 更新之前
+  updated() {}, //生命周期 - 更新之后
+  beforeDestroy() {}, //生命周期 - 销毁之前
+  destroyed() {}, //生命周期 - 销毁完成
+  activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
+  //方法集合
+  methods: {
+    changeName() {
+      this.name = "youngs001";
+    },
+    changeAge() {
+      this.age += 1;
+    },
+    showTel() {
+      alert(this.tel);
+    },
+  },
+};
+</script>
+<style scoped>
+.person {
+  background: skyblue;
+  padding: 20px;
+}
+button {
+  margin: 0 5px;
+}
+</style>
