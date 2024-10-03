@@ -49,18 +49,18 @@ function showTel() {
   console.log(3, tel);
 }
 
-let car = reactive({
+let car = ref({
   brand: "宝马",
   price: 2000,
 });
 console.log("car:", car);
 function changePrice() {
-  car.price += 10;
+  car.value.price += 10;
 }
 
-let games = reactive(["lol", "王者荣耀", "原神"]);
+let games = ref(["lol", "王者荣耀", "原神"]);
 function changeFirstGame() {
-  games[0] = "三国杀";
+  games.value[0] = "三国杀";
 }
 
 let obj = reactive({
