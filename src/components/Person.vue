@@ -16,7 +16,8 @@
     </ul>
     <button @click="changeFirstGame">修改第一个游戏的信息</button>
     <hr />
-    <h2>很深的对象c：{{ obj.a.b.c }}</h2>
+    <h2>很深的对象c.d：{{ obj.a.b.c.d }}</h2>
+    <button @click="test">test</button>
   </div>
 </template>
 <!-- <script lang="ts">
@@ -62,13 +63,18 @@ function changeFirstGame() {
   games[0] = "三国杀";
 }
 
-let obj = {
+let obj = reactive({
   a: {
     b: {
-      c: "ccccc",
+      c: {
+        d: "dddddd",
+      },
     },
   },
-};
+});
+function test() {
+  obj.a.b.c.d = "999";
+}
 </script>
 <style scoped>
 .person {
