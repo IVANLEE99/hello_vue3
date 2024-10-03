@@ -2,6 +2,8 @@
 <template>
   <div class="person">
     <h2>姓名：{{ name }}</h2>
+    <h2>姓名name2：{{ name2 }}</h2>
+    
     <h2>年龄：{{ age }}</h2>
     <button @click="changeName">修改姓名</button>
     <button @click="changeAge">修改年龄</button>
@@ -20,14 +22,15 @@ export default {
       default: "",
     },
   },
-  //   data() {
-  //     //这里存放数据
-  //     return {
-  //       name: "youngs",
-  //       age: 18,
-  //       tel: "13333333",
-  //     };
-  //   },
+  data() {
+    //这里存放数据
+    return {
+      //   name: "data:youngs",
+      //   age: 18,
+      //   tel: "data:13333333",
+      name2: this.name,
+    };
+  },
   //监听属性 类似于data概念
   computed: {},
   //监控data中的数据变化
@@ -46,17 +49,17 @@ export default {
   destroyed() {}, //生命周期 - 销毁完成
   activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
   //   //方法集合
-  //   methods: {
-  //     changeName() {
-  //       this.name = "youngs001";
-  //     },
-  //     changeAge() {
-  //       this.age += 1;
-  //     },
-  //     showTel() {
-  //       alert(this.tel);
-  //     },
-  //   },
+  methods: {
+    changeName() {
+      this.name = "methods:youngs001";
+    },
+    changeAge() {
+      this.age += 1;
+    },
+    showTel() {
+      alert(this.tel);
+    },
+  },
   setup() {
     console.log("setup"); //1、setup比 beforeCreate更先执行～
     console.log("@@this", this); //2、setup中的this为undefined，vue3中已经弱化this
@@ -78,15 +81,16 @@ export default {
       alert(tel);
       console.log(3, tel);
     }
-    // return {
-    //   name,
-    //   age,
-    //   changeName,
-    //   changeAge,
-    //   showTel,
-    // };
+    //data method setup 共存已setup为主
+    return {
+      name,
+      age,
+      changeName,
+      changeAge,
+      showTel,
+    };
     //setup的返回值也可以是一个渲染函数
-    return () => "哈哈";
+    // return () => "哈哈";
   },
 };
 </script>
