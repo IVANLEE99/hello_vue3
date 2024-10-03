@@ -6,6 +6,17 @@
     <button @click="changeName">修改姓名</button>
     <button @click="changeAge">修改年龄</button>
     <button @click="showTel">查看联系方式</button>
+    <hr />
+    <h2>车辆信息：品牌：{{ car.brand }},价格：{{ car.price }}万</h2>
+    <button @click="changePrice">修改车辆价格</button>
+    <hr />
+    <h2>游戏列表</h2>
+    <ul>
+      <li v-for="(g, i) in games" :key="i">{{ g }}</li>
+    </ul>
+    <button @click="changeFirstGame">修改第一个游戏的信息</button>
+    <hr />
+    <h2>很深的对象c：{{ obj.a.b.c }}</h2>
   </div>
 </template>
 <!-- <script lang="ts">
@@ -18,6 +29,7 @@ console.log("setup"); //1、setup比 beforeCreate更先执行～
 console.log("@@this", this); //2、setup中的this为undefined，vue3中已经弱化this
 
 import { ref } from "vue";
+import { reactive } from "vue";
 //3、数据，原来写在data中，此时name age tel都不是响应式的数据
 let name = ref("张三");
 let age = ref(18);
@@ -35,6 +47,28 @@ function showTel() {
   alert(tel);
   console.log(3, tel);
 }
+
+let car = reactive({
+  brand: "宝马",
+  price: 2000,
+});
+console.log("car:", car);
+function changePrice() {
+  car.price += 10;
+}
+
+let games = reactive(["lol", "王者荣耀", "原神"]);
+function changeFirstGame() {
+  games[0] = "三国杀";
+}
+
+let obj = {
+  a: {
+    b: {
+      c: "ccccc",
+    },
+  },
+};
 </script>
 <style scoped>
 .person {
