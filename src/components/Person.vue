@@ -9,6 +9,7 @@
     <hr />
     <h2>车辆信息：品牌：{{ car.brand }},价格：{{ car.price }}万</h2>
     <button @click="changePrice">修改车辆价格</button>
+    <button @click="changeCar">修改车</button>
     <hr />
     <h2>游戏列表</h2>
     <ul>
@@ -49,13 +50,32 @@ function showTel() {
   console.log(3, tel);
 }
 
-let car = ref({
+let car = reactive({
   brand: "宝马",
   price: 2000,
 });
+let car2 = reactive({
+  brand: "奥拓",
+  price: 1,
+});
 console.log("car:", car);
 function changePrice() {
-  car.value.price += 10;
+  car.price += 10;
+}
+function changeCar() {
+  // car = {
+  //   brand: "奥拓",
+  //   price: 1,
+  // };
+  // car = reactive({
+  //   brand: "奥拓",
+  //   price: 1,
+  // });
+  // car = car2;
+  car = Object.assign(car, {
+    brand: "奥拓",
+    price: 1,
+  });
 }
 
 let games = ref(["lol", "王者荣耀", "原神"]);
