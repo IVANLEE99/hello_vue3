@@ -6,6 +6,8 @@
     名：<input type="text" v-model="lastName" />
     <br />
     全名：{{ fullName }}
+    <br />
+    <button @click="changeFullName">修改为wang-wu</button>
   </div>
 </template>
 
@@ -13,9 +15,24 @@
 import { ref, computed } from "vue";
 let firstName = ref("张");
 let lastName = ref("三");
-let fullName = computed(() => {
-  return firstName.value + "-" + lastName.value;
+// let fullName = computed(() => {
+//   return firstName.value + "-" + lastName.value;
+// });
+let fullName = computed({
+  get() {
+    return firstName.value + "-" + lastName.value;
+  },
+  set(val) {
+    console.log(val);
+    let [str1, str2] = val.split("-");
+    firstName.value = str1;
+    lastName.value = str2;
+  },
 });
+function changeFullName() {
+  console.log("changeFullName");
+  fullName.value = "wang-wu";
+}
 </script>
 <style scoped>
 .person {
