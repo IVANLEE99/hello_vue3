@@ -8,11 +8,14 @@
     全名：{{ fullName }}
     <br />
     <button @click="changeFullName">修改为wang-wu</button>
+    <br />
+    <h2>watch 情况一 {{ sum }}</h2>
+    <button @click="addSum">sum+1</button>
   </div>
 </template>
 
 <script lang="ts" setup name="Person">
-import { ref, computed } from "vue";
+import { ref, computed, watch } from "vue";
 let firstName = ref("张");
 let lastName = ref("三");
 // let fullName = computed(() => {
@@ -33,6 +36,17 @@ function changeFullName() {
   console.log("changeFullName");
   fullName.value = "wang-wu";
 }
+
+let sum = ref(0);
+function addSum() {
+  sum.value += 1;
+}
+let stopWatch = watch(sum, (newval, oldval) => {
+  console.log("watch", newval, oldval);
+  if (newval > 10) {
+    stopWatch();
+  }
+});
 </script>
 <style scoped>
 .person {
