@@ -1,104 +1,38 @@
 <!-- Person -->
 <template>
   <div class="person">
-    <h2>watch 情况一 {{ sum }}</h2>
-    <button @click="addSum">sum+1</button>
-    <hr />
-    <h2>watch 情况四 监视ref或reactive定义的【对象类型】数据中的某个属性</h2>
-    name:{{ person.name }}
+    <h1>需求：水温达到50℃，或水位达到20cm，则联系服务器</h1>
+    水位:{{ height }}
     <br />
-    age:{{ person.age }}
+    温度：{{ temp }}
     <br />
-    汽车c1:{{ person.car.c1 }}
-    <br />
-    汽车c2:{{ person.car.c2 }}
-    <button @click="changeName">修改名字</button>
-    <button @click="changeAge">修改年龄</button>
-    <button @click="changeC1">修改c1</button>
-    <button @click="changeC2">修改c2</button>
-    <button @click="changeCar">修改car</button>
+    <button @click="changeHeight">水位+10</button>
+    <button @click="changeTemp">温度+10</button>
   </div>
 </template>
 
 <script lang="ts" setup name="Person">
-import { ref, computed, watch, reactive } from "vue";
-let sum = ref(0);
-function addSum() {
-  sum.value += 1;
+import { ref, watch, watchEffect } from "vue";
+let temp = ref(10);
+let height = ref(10);
+function changeHeight() {
+  height.value += 10;
 }
-let stopWatch = watch(sum, (newval, oldval) => {
-  console.log("watch", newval, oldval);
-  if (newval > 10) {
-    stopWatch();
-  }
-});
-
-let person = reactive({
-  name: "张三",
-  age: 9,
-  car: {
-    c1: "奥迪",
-    c2: "宝马",
-  },
-});
-function changeName() {
-  person.name += "~";
+function changeTemp() {
+  temp.value += 10;
 }
-function changeAge() {
-  person.age += 1;
-}
-function changePerson() {
-  Object.assign(person, {
-    name: "李四",
-    age: 44,
-  });
-}
-function changeC1() {
-  person.car.c1 = "雅迪";
-}
-function changeC2() {
-  person.car.c2 = "爱马";
-}
-function changeCar() {
-  person.car = {
-    c1: "车1",
-    c2: "车2",
-  };
-}
-
-/*监视，
-监视，情况四：监视响应式对象中的某个属性，且该属性是基本类型的，要写成函数式
- */
-watch(
-  () => person.name,
-  (newval, oldval) => {
-    console.log("person.name数据变化了");
-  }
-);
-// 监视，情况四：监视响应式对象中的某个属性，且该属性是对象类型的，可以直接写，也能写函数，更推荐写函数
-// watch(person.car, (newval, oldval) => {
-//   console.log("person.car数据变化了~", newval, oldval);
+// watch([temp, height], (val) => {
+//   let [t2, h2] = val;
+//   if (t2 >= 50 || h2 > +20) {
+//     console.log("联系服务器～");
+//   }
 // });
-watch(
-  () => person.car,
-  (newval, oldval) => {
-    // console.log("person.car数据变化了~", newval, oldval);
-  },
-  {
-    deep: true,
+watchEffect(() => {
+  console.log("watchEffect~~");
+  if (temp.value >= 50 || height.value > 20) {
+    console.log("联系服务器～");
   }
-);
-/*
-情况五
-监视上述的多个数据
-*/
-watch(
-  [() => person.name, () => person.car],
-  (newValue, oldValue) => {
-    console.log("person.car变化了", newValue, oldValue);
-  },
-  { deep: true }
-);
+});
 </script>
 <style scoped>
 .person {
