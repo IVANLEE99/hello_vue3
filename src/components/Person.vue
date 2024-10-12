@@ -1,37 +1,28 @@
 <!-- Person -->
 <template>
   <div class="person">
-    <h1>需求：水温达到50℃，或水位达到20cm，则联系服务器</h1>
-    水位:{{ height }}
-    <br />
-    温度：{{ temp }}
-    <br />
-    <button @click="changeHeight">水位+10</button>
-    <button @click="changeTemp">温度+10</button>
+    <h1>广东</h1>
+    <h2 ref="guangzhou">广州</h2>
+    <h3>海珠</h3>
+    <button @click="showGuangzhou">获取广州</button>
   </div>
 </template>
 
 <script lang="ts" setup name="Person">
-import { ref, watch, watchEffect } from "vue";
-let temp = ref(10);
-let height = ref(10);
-function changeHeight() {
-  height.value += 10;
+import { ref, defineExpose } from "vue";
+let guangzhou = ref();
+let a = ref(0);
+let b = ref(1);
+let c = ref(2);
+// console.log(guangzhou.value);
+function showGuangzhou() {
+  console.log(guangzhou.value);
 }
-function changeTemp() {
-  temp.value += 10;
-}
-// watch([temp, height], (val) => {
-//   let [t2, h2] = val;
-//   if (t2 >= 50 || h2 > +20) {
-//     console.log("联系服务器～");
-//   }
-// });
-watchEffect(() => {
-  console.log("watchEffect~~");
-  if (temp.value >= 50 || height.value > 20) {
-    console.log("联系服务器～");
-  }
+defineExpose({
+  guangzhou,
+  a,
+  b,
+  c,
 });
 </script>
 <style scoped>
