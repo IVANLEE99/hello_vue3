@@ -1,25 +1,35 @@
 <!-- Person -->
 <template>
   <div class="person">
-    {{ person.name }}
-    <br />
-    {{ persons }}
-    <br />
-    {{ ps }}
+    {{ a }}
+    <ul>
+      <li v-for="item in list" :key="item.id">{{ item.name }}</li>
+    </ul>
   </div>
 </template>
 
 <script lang="ts" setup name="Person">
-import { type PersonInter, type Persons } from "@/types";
-let person: PersonInter = { id: "1", name: "张三", age: 18 };
-let persons: Persons = [
-  { id: "1", name: "张三", age: 18 },
-  { id: "2", name: "李四", age: 19 },
-];
-let ps: Array<PersonInter> = [
-  { id: "1", name: "张三", age: 18 },
-  { id: "2", name: "李四", age: 19 },
-];
+import { defineProps, withDefaults } from "vue";
+import type { Persons } from "@/types";
+// 只接受list
+// defineProps(['list']);
+
+// 接受list+限制类型
+// defineProps<{
+//   list: Persons;
+// }>();
+
+// 接受list+限制类型+限制必要性+指定默认值
+withDefaults(
+  defineProps<{
+    list?: Persons;
+    a?: string;
+  }>(),
+  {
+    list: () => [{ id: "1", name: "default", age: 18 }],
+    a: "a default",
+  }
+);
 </script>
 <style scoped>
 .person {
