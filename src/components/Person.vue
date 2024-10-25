@@ -22,8 +22,8 @@ import type { Persons } from "@/types";
 // 接受list+限制类型+限制必要性+指定默认值
 withDefaults(
   defineProps<{
-    list?: Persons;
-    a?: string;
+    list?: Persons,
+    a?: string,
   }>(),
   {
     list: () => [{ id: "1", name: "default", age: 18 }],
