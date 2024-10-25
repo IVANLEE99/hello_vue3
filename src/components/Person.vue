@@ -1,39 +1,21 @@
 <!-- Person -->
 <template>
   <div class="person">
-    sum:{{ sum }}
-    <br>
+    <h2>sum: {{ sum }}</h2>
+    <h2>bigSum: {{ bigSum }}</h2>
     <button @click="add">点我+1</button>
+    <br>
+    <h2>狗的图片</h2>
+    <img v-for="(dog, index) in dogsList" :key="index" :src="dog">
+    <button @click="getDog">再来一张</button>
   </div>
 </template>
 
 <script lang="ts" setup name="Person">
-import { ref } from 'vue';
-import { onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, onUnmounted } from 'vue';
-const sum = ref(0);
-const add = () => {
-  sum.value++;
-};
-console.log('子--创建～');
-onBeforeMount(() => {
-  console.log('子--挂载前～');
-});
-onMounted(() => {
-  console.log('子--挂载后～');
-});
-onBeforeUpdate(() => {
-  console.log('子--更新前～');
-});
-onUpdated(() => {
-  console.log('子--更新后～');
-});
-onBeforeUnmount(() => {
-  console.log('子--卸载前～');
-});
-onUnmounted(() => {
-  console.log('子--卸载后～');
-});
-
+import useSum from '../hooks/useSum';
+import useDog from '../hooks/useDog';
+const { sum, add, bigSum } = useSum();
+const { dogsList, getDog } = useDog();
 </script>
 <style scoped>
 .person {
@@ -43,5 +25,10 @@ onUnmounted(() => {
 
 button {
   margin: 0 5px;
+}
+
+img {
+  width: 200px;
+  margin: 10px;
 }
 </style>
