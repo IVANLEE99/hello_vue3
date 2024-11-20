@@ -1,4 +1,4 @@
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 export default function () {
     const sum = ref(0);
     const add = () => {
@@ -6,6 +6,9 @@ export default function () {
     };
     const bigSum = computed(() => {
         return sum.value * 10;
+    });
+    onMounted(() => {
+        add();
     });
     return { sum, add, bigSum };
 }
