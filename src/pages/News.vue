@@ -1,15 +1,29 @@
 <template>
   <div class="news">
     <ul>
-      <li><a href="#">新闻001</a></li>
-      <li><a href="#">新闻002</a></li>
-      <li><a href="#">新闻003</a></li>
-      <li><a href="#">新闻004</a></li>
+      <li v-for="news in newsList" :key="news.id">
+        <router-link :to="{ path: '/news/detail', query: { id: news.id } }">{{
+          news.name
+        }}</router-link>
+      </li>
     </ul>
+    <RouterView />
   </div>
 </template>
   
-  <script setup lang="ts" name="News">
+<script setup lang="ts" name="News">
+import { RouterView } from "vue-router";
+import { reactive } from "vue";
+const newsList = reactive([
+  { id: 1, name: "新闻001", content: "内容001" },
+  { id: 2, name: "新闻002", content: "内容002" },
+  { id: 3, name: "新闻003", content: "内容003" },
+  { id: 4, name: "新闻004", content: "内容004" },
+  { id: 5, name: "新闻005", content: "内容005" },
+  { id: 6, name: "新闻006", content: "内容006" },
+  { id: 7, name: "新闻007", content: "内容007" },
+  { id: 8, name: "新闻008", content: "内容008" },
+]);
 </script>
   
   <style scoped>
