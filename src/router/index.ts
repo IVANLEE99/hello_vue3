@@ -8,14 +8,17 @@ const router = createRouter({
     history: createWebHashHistory(),
     routes: [
         {
+            name: "home",
             path: "/home",
             component: Home,
         },
         {
+            name: "news",
             path: "/news",
             component: News,
         },
         {
+            name: "about",
             path: "/about",
             component: About,
         },

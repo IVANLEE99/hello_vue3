@@ -3,8 +3,10 @@
     <h2 class="title">vue 路由测试～</h2>
     <div class="navigate">
       <router-link to="/home" active-class="xiaozhupeiqi">首页</router-link>
-      <router-link to="/news" active-class="xiaozhupeiqi">新闻</router-link>
-      <router-link :to="{ path: '/about' }" active-class="xiaozhupeiqi"
+      <router-link :to="{ name: 'news' }" active-class="xiaozhupeiqi"
+        >新闻</router-link
+      >
+      <router-link :to="{ name: 'about' }" active-class="xiaozhupeiqi"
         >关于</router-link
       >
     </div>
