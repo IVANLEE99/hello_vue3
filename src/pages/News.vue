@@ -9,6 +9,15 @@
           news.name
         }}</router-link>
       </li>
+
+      <li v-for="news in newsList" :key="news.id">
+        <!-- <router-link
+          :to="`/news/detail?id=${news.id}&name=${news.name}&content=${news.content}`"
+          >{{ news.name }}</router-link -->
+        <router-link :to="{ name: 'myDetail', params: news }">{{
+          news.name
+        }}</router-link>
+      </li>
     </ul>
     <RouterView />
   </div>
