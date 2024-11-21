@@ -1,20 +1,33 @@
 <template>
-  <ul class="news-list">
-    <li>编号：{{ route.query.id }}</li>
-    <li>标题：{{ route.query.name }}</li>
-    <li>内容：{{ route.query.content }}</li>
+  <!-- <ul class="news-list">
+    <li>编号：{{ id }}</li>
+    <li>标题：{{ name }}</li>
+    <li>内容：{{ content }}</li>
   </ul>
   <ul class="news-list">
-    <li>编号：{{ route.params.id }}</li>
-    <li>标题：{{ route.params.name }}</li>
-    <li>内容：{{ route.params.content }}</li>
+    <li>编号：{{ id }}</li>
+    <li>标题：{{ name }}</li>
+    <li>内容：{{ content }}</li>
+  </ul> -->
+  <!-- <ul class="news-list">
+    <li>编号：{{ a }}</li>
+    <li>标题：{{ b }}</li>
+    <li>内容：{{ c }}</li>
+  </ul> -->
+  <ul class="news-list">
+    <li>编号：{{ id }}</li>
+    <li>标题：{{ name }}</li>
+    <li>内容：{{ content }}</li>
   </ul>
 </template>
   
 <script setup lang="ts" name="About">
 import { useRoute } from "vue-router";
-const route = useRoute();
-console.log(route.query);
+import { defineProps } from "vue";
+// defineProps(["a", "b", "c"]);
+defineProps(["id", "name", "content"]);
+// const route = useRoute();
+// console.log(route.query);
 </script>
   
 <style scoped>
