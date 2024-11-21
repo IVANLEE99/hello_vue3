@@ -2,7 +2,10 @@
   <div class="news">
     <ul>
       <li v-for="news in newsList" :key="news.id">
-        <router-link :to="{ path: '/news/detail', query: { id: news.id } }">{{
+        <!-- <router-link
+          :to="`/news/detail?id=${news.id}&name=${news.name}&content=${news.content}`"
+          >{{ news.name }}</router-link -->
+        <router-link :to="{ name: 'detail', query: news }">{{
           news.name
         }}</router-link>
       </li>

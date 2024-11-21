@@ -1,15 +1,18 @@
 <template>
   <ul class="news-list">
-    <li>编号：xxx</li>
-    <li>标题：xxx</li>
-    <li>内容：xxx</li>
+    <li>编号：{{ route.query.id }}</li>
+    <li>标题：{{ route.query.name }}</li>
+    <li>内容：{{ route.query.content }}</li>
   </ul>
 </template>
   
-  <script setup lang="ts" name="About">
+<script setup lang="ts" name="About">
+import { useRoute } from "vue-router";
+const route = useRoute();
+console.log(route.query);
 </script>
   
-  <style scoped>
+<style scoped>
 .news-list {
   list-style: none;
   padding-left: 20px;
