@@ -5,6 +5,7 @@
         <!-- <router-link
           :to="`/news/detail?id=${news.id}&name=${news.name}&content=${news.content}`"
           >{{ news.name }}</router-link -->
+        <button @click="goDetail(news)">查看新闻</button>
         <router-link :to="{ name: 'detail', query: news }">{{
           news.name
         }}</router-link>
@@ -26,6 +27,8 @@
 <script setup lang="ts" name="News">
 import { RouterView } from "vue-router";
 import { reactive } from "vue";
+import { useRouter } from "vue-router";
+const router = useRouter();
 const newsList = reactive([
   { id: 1, name: "新闻001", content: "内容001" },
   { id: 2, name: "新闻002", content: "内容002" },
@@ -36,6 +39,21 @@ const newsList = reactive([
   { id: 7, name: "新闻007", content: "内容007" },
   { id: 8, name: "新闻008", content: "内容008" },
 ]);
+interface News {
+  id: number;
+  name: string;
+  content: string;
+}
+function goDetail(news: News) {
+  // router.push({
+  //   name: "detail",
+  //   query: { ...news },
+  // });
+  router.replace({
+    name: "detail",
+    query: { ...news },
+  });
+}
 </script>
   
   <style scoped>
