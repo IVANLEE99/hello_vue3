@@ -2,7 +2,9 @@
   <div class="loveTalk">
     <button @click="getTalk">获取一句土味情话</button>
     <ul>
-      <li v-for="item in talkList" :key="item.id">{{ item.title }}</li>
+      <li v-for="item in loveTalkStore.talkList" :key="item.id">
+        {{ item.title }}
+      </li>
     </ul>
   </div>
 </template>
@@ -11,13 +13,15 @@
 import { reactive } from "vue";
 import axios from "axios";
 import { nanoid } from "nanoid";
+import { useLoveTalkStore } from "@/store/loveTalk";
+let loveTalkStore = useLoveTalkStore();
 
 // 数据
-let talkList = reactive([
-  { id: "ftrfasdf01", title: "今天你有点怪，哪里怪？怪好看的！" },
-  { id: "ftrfasdf02", title: "草莓、蓝莓、蔓越莓，今天想我了没？" },
-  { id: "ftrfasdf03", title: "心里给你留了一块地，我的死心塌地" },
-]);
+// let talkList = reactive([
+//   { id: "ftrfasdf01", title: "今天你有点怪，哪里怪？怪好看的！" },
+//   { id: "ftrfasdf02", title: "草莓、蓝莓、蔓越莓，今天想我了没？" },
+//   { id: "ftrfasdf03", title: "心里给你留了一块地，我的死心塌地" },
+// ]);
 async function getTalk() {
   // let {
   //   data: { content: title },
@@ -42,7 +46,7 @@ async function getTalk() {
     id: nanoid(),
     title: arr[Math.floor(Math.random() * arr.length)],
   };
-  talkList.push(obj);
+  // talkList.push(obj);
 }
 </script>
 
