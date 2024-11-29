@@ -1,6 +1,6 @@
 <template>
   <div class="sum">
-    当前求和为：{{ count }}
+    当前求和为：{{ count }} 当前大求和为：{{ countStore.bigCount }}
     <select v-model.number="n">
       <option value="1">1</option>
       <option value="2">2</option>

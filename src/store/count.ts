@@ -10,4 +10,10 @@ export const useCountStore = defineStore("count", {
         count: 6,
         time: "dfdf",
     }),
+    getters: {
+        bigCount(state) {
+            // state.count++
+            return state.count * 10;
+        }
+    }
 });
