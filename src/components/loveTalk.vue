@@ -17,6 +17,10 @@ import { useLoveTalkStore } from "@/store/loveTalk";
 let loveTalkStore = useLoveTalkStore();
 import { storeToRefs } from "pinia";
 const { talkList } = storeToRefs(loveTalkStore);
+loveTalkStore.$subscribe((mutation, state) => {
+  console.log("subscribe-data", mutation, state);
+  localStorage.setItem("talkList", JSON.stringify(state.talkList));
+});
 
 // 数据
 // let talkList = reactive([
